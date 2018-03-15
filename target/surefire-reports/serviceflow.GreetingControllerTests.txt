@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: serviceflow.GreetingControllerTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 4.61 s <<< FAILURE! - in serviceflow.GreetingControllerTests
+noParamGreetingShouldReturnDefaultMessage(serviceflow.GreetingControllerTests)  Time elapsed: 0.442 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template "greeting", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at serviceflow.GreetingControllerTests.noParamGreetingShouldReturnDefaultMessage(GreetingControllerTests.java:42)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template "greeting", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at serviceflow.GreetingControllerTests.noParamGreetingShouldReturnDefaultMessage(GreetingControllerTests.java:42)
+
+paramGreetingShouldReturnTailoredMessage(serviceflow.GreetingControllerTests)  Time elapsed: 0.021 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: Error resolving template "greeting", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at serviceflow.GreetingControllerTests.paramGreetingShouldReturnTailoredMessage(GreetingControllerTests.java:49)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template "greeting", template might not exist or might not be accessible by any of the configured Template Resolvers
+	at serviceflow.GreetingControllerTests.paramGreetingShouldReturnTailoredMessage(GreetingControllerTests.java:49)
+
