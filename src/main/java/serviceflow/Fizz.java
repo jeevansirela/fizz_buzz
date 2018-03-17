@@ -7,6 +7,7 @@
 package serviceflow;
 import java.util.Date; 
 
+// Thread Class
 class LargeDiv extends Thread{
 	
 	static String[] results;
@@ -35,6 +36,7 @@ class LargeDiv extends Thread{
 	}
 }
 
+//Main Fizz class
 public class Fizz {
 	
 	private final int number;
@@ -77,7 +79,6 @@ public class Fizz {
 				arr[i-1]=new LargeDiv(thread_division*(i-1),thread_division*i);
 				arr[i-1].start();	
 			}else {
-				System.out.println("asdas"+thread_division);
 				arr[i-1]=new LargeDiv(thread_division*(i-1),number);
 				arr[i-1].start();	
 			}

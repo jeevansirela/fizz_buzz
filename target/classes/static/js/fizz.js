@@ -6,7 +6,6 @@ $(document).ready(function(){
 	        type:'post',
 	        data:{"number":$('.myForm #number').val()},
 	        success:function(response){
-	        	debugger;
 	        	for(var i=0;i<response.length;i++){
 	   				if(i==0)
 	   					$("#fizz_string").append(response[i]);
