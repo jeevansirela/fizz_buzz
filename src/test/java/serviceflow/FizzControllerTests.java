@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,28 +28,35 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.hamcrest.Matchers;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class GreetingControllerTests {
+public class FizzControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
-
+    
     @Test
-    public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
-
-        this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, World!"));
+    public void NumbershouldcontainFizzGreaterthanThree() throws Exception { 	
+        this.mockMvc.perform(post("/fizz").param("number", "4"))
+        .andDo(print()).andExpect(status().isOk())
+        .andExpect((jsonPath("$",Matchers.hasSize(4))))
+        .andExpect((jsonPath("$", Matchers.containsInAnyOrder("1", "2", "Fizz","4"))));
     }
-
     @Test
-    public void paramGreetingShouldReturnTailoredMessage() throws Exception {
-
-        this.mockMvc.perform(get("/greeting").param("name", "Spring Community"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
+    public void NumbershouldcontainFizzAndBuzzGreaterthanFive() throws Exception {	
+        this.mockMvc.perform(post("/fizz").param("number", "5"))
+        .andDo(print()).andExpect(status().isOk())
+        .andExpect((jsonPath("$",Matchers.hasSize(5))))
+        .andExpect((jsonPath("$", Matchers.containsInAnyOrder("1", "2", "Fizz","4","Buzz"))));
     }
-
+    @Test
+    public void NumbershouldcontainFizzAndBuzzGreaterthanFifteen() throws Exception {	
+        this.mockMvc.perform(post("/fizz").param("number", "15"))
+        .andDo(print()).andExpect(status().isOk())
+        .andExpect((jsonPath("$",Matchers.hasSize(15))))
+        .andExpect((jsonPath("$", Matchers.containsInAnyOrder("1", "2", "Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","Fizz Buzz"))));
+    }
 }
